@@ -66,9 +66,6 @@ const sessionOptions = {
   },
 };
 
-// app.get("/", (req, res) => {
-//   res.send("Hello!!");
-// });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -85,15 +82,6 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-});
-
-app.get("/demouser", async (req, res) => {
-  let fakeUser = new User({
-    email: "abc@gmail.com",
-    username: "Abc",
-  });
-  let registeredUser = await User.register(fakeUser, "Hello");
-  res.send(registeredUser);
 });
 
 app.use("/listings", listingRouter);
@@ -113,4 +101,3 @@ app.use((err, req, res, next) => {
 app.listen(port, (req, res) => {
   console.log(`Server is listening on port ${port}`);
 });
-// C:\Program Files\MongoDB\Server\5.0\mongosh>
